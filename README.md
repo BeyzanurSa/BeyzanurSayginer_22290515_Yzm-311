@@ -10,7 +10,7 @@ Bu proje, bir kütüphane yönetim sistemi oluşturur. Kullanıcılar sisteme gi
 
 ## **Özellikler**
 - Kullanıcı giriş ve kayıt sistemi.
-- Kitapların listelenmesi (ID, ISBN, Baskı Yılı, Yazar, Kategori bilgileriyle).
+- Kitapların listelenmesi (ID, ISBN,Kita Adı Baskı Yılı, Yazar, Kategori bilgileriyle).
 - Yeni kitap ekleme.
 - Kitap düzenleme.
 - Kitap silme.
@@ -41,6 +41,7 @@ USE kutuphane;
 CREATE TABLE kitaplar (
     id INT AUTO_INCREMENT PRIMARY KEY,
     isbn VARCHAR(13) NOT NULL,
+    kitap_adi VARXHAR(255) NOT NULL,
     basim_yili INT NOT NULL,
     yazar VARCHAR(255) NOT NULL,
     kategori VARCHAR(255) NOT NULL
@@ -53,9 +54,9 @@ CREATE TABLE kullanicilar (
     parola VARCHAR(255) NOT NULL
 );
 
-INSERT INTO kitaplar (isbn, basim_yili, yazar, kategori) VALUES
-('9780140449136', 2003, 'Fyodor Dostoyevsky', 'Klasik'),
-('9780061120084', 2006, 'Harper Lee', 'Roman');
+INSERT INTO kitaplar (isbn, kitap_adi,basim_yili, yazar, kategori) VALUES
+('9780140449136','1984', 2003, 'Fyodor Dostoyevsky', 'Klasik'),
+('9780061120084','Bülbülü Öldürmek', 2006, 'Harper Lee', 'Roman');
 
 INSERT INTO kullanicilar (kullanici_adi, email, parola) VALUES
 ('admin', 'admin@example.com', 'hashed-password');
