@@ -1,4 +1,4 @@
-# Yzm-311_VT_Ödev: Kütüphane Sistemi Web Sitesi
+# Yzm-311_VT_Kutuphane: Kütüphane Sistemi Web Sitesi
 
 ### **Geliştiren**
 Ad Soyad: Beyzanur Saygıner  
