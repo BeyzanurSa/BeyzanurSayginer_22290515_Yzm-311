@@ -92,7 +92,7 @@ Kullanıcılar giriş yapabilir hesabı yoksa yeni hesap oluşturabilir.
 
 
 **2. Kitap Yönetimi**
-Kitaplar listelenir, her kitap için düzenle ve sil butonları vardır.
+Kitaplar listelenir, her kitap için ödünç al,düzenle, sil butonları vardır.
 ![kitap listeleme paneli](assets/panel.gif)
 
 
