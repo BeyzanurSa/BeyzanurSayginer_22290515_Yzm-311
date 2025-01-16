@@ -6,7 +6,7 @@ Ad Soyad: Beyzanur Saygıner
 Ders Kodu: YZM311  
 
 ## **Proje Açıklaması**
-Bu proje, bir kütüphane yönetim sistemi oluşturur. Kullanıcılar sisteme giriş yapabilir, kitapları listeleyebilir, yeni kitaplar ekleyebilir, mevcut kitapları düzenleyebilir ve silebilir.
+Bu proje, bir kütüphane yönetim sistemi oluşturur. Kullanıcılar sisteme giriş yapabilir, kitapları listeleyebilir, yeni kitaplar ekleyebilir, mevcut kitapları düzenleyebilir ve silebilir.Kitap ödünç alabilirler ve teslim edebilirler.
 
 ## **Özellikler**
 - Kullanıcı giriş ve kayıt sistemi.
@@ -14,6 +14,8 @@ Bu proje, bir kütüphane yönetim sistemi oluşturur. Kullanıcılar sisteme gi
 - Yeni kitap ekleme.
 - Kitap düzenleme.
 - Kitap silme.
+- Kitap ödünç alma.
+- Kitap teslim etme.
 
 ## **Kurulum (Setup)**
 Projeyi klonlayıp çalıştırmak için aşağıdaki adımları takip edebilirsiniz:
@@ -53,6 +55,16 @@ CREATE TABLE kullanicilar (
     email VARCHAR(255) UNIQUE NOT NULL,
     parola VARCHAR(255) NOT NULL
 );
+CREATE TABLE odunc_alma (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    kullanici_id INT NOT NULL,
+    kitap_id INT NOT NULL,
+    odunc_alma_tarihi DATE NOT NULL,
+    teslim_tarihi DATE,
+    teslim_edildi TINYINT, 
+    FOREIGN KEY (kullanici_id) REFERENCES kullanicilar(id),
+    FOREIGN KEY (kitap_id) REFERENCES kitaplar(id)
+);
 
 INSERT INTO kitaplar (isbn, kitap_adi,basim_yili, yazar, kategori) VALUES
 ('9780140449136','1984', 2003, 'Fyodor Dostoyevsky', 'Klasik'),
@@ -75,15 +87,18 @@ http://localhost/Yzm-311_vt_odev/
 **1. Giriş/Kayıt Ekranı**
 Kullanıcılar giriş yapabilir hesabı yoksa yeni hesap oluşturabilir.
 şifre yanlışsa uyarı çıkar doğruysa admin paneline yönlendirir.
+![giriş ekranı](assets/giris.gif)
+![kayıt ekranı](assets/kayit.gif)
 
 
 **2. Kitap Yönetimi**
 Kitaplar listelenir, her kitap için düzenle ve sil butonları vardır.
+![kitap listeleme paneli](assets/panel.gif)
 
 
 **3. Yeni Kitap Ekleme**
 Kullanıcılar, yeni kitap ekleyebilir.
-
+![Kitap ekleme ekranı](assets/yeni.gif)
 
 **4. Kitap Düzenleme**
 Mevcut kitapların bilgileri düzenlenebilir.
@@ -92,6 +107,13 @@ Mevcut kitapların bilgileri düzenlenebilir.
 **5. Kitap Silme**
 Bir kitabı veritabanından silebilirsiniz.
 
+**6.Kitap ödünç al**
+İstediğiniz kitabı ödünç akabilirsiniz otomatik son teslim tarihi 15 gün sonrasına atanacaktır.
+![Kitap ödünç alındığında başka kullanıcıda böyle gözükecektir](assets/odunc.gif)
+
+**7.Kitap teslim etme**
+Ödünç aldığını kitabı teslim edebilirsiniz.
+![Kitap ödünç alındığında kitabı alan kullanıcıda böyle gözükecektir](assets/teslim.gif)
 
 **Projenin Yapısı**
 bash
@@ -103,4 +125,8 @@ Yzm-311_vt_odev/
 ├── duzenle.php       # Kitap düzenleme sayfası
 ├── sil.php           # Kitap silme işlemi
 ├── baglanti.php      # Veritabanı bağlantısı
-└── kayit.php         # Giriş ve kayıt işlemleri
+├── kayit.php         # Giriş ve kayıt işlemleri
+├── odunc.php         # Ödünç alma işlemlerini 
+├── teslim.php        # Teslim etme işlemlerini 
+└── exit.php          # Çıkış (giriş ekranına yönlendirir)
+
